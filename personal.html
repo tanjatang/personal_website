@@ -3,50 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人网页</title>
+    <title>Your Name - 知性女生风格主页</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3ece7; /* 淡粉色背景 */
+            color: #333;
         }
         header {
+            background-color: #543d36; /* 深褐色标题栏 */
+            color: #fff;
             text-align: center;
+            padding: 50px 0;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav {
+            background-color: #8a736b; /* 浅褐色导航栏 */
+            color: #fff;
             padding: 10px;
-            background-color: #f2f2f2;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2em;
         }
         section {
-            margin-bottom: 20px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff; /* 白色内容区域 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
-        h2 {
-            color: #333;
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #543d36; /* 深褐色页脚 */
+            color: #fff;
+        }
+        form {
+            margin: 20px;
+            text-align: center;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label {
+            background-color: #8a736b; /* 浅褐色按钮 */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        label:hover {
+            background-color: #6c574e; /* 深褐色按钮 */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .notes textarea, .editable {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+            border: 1px solid #8a736b; /* 浅褐色边框 */
+            border-radius: 8px;
+            resize: none;
+            font-size: 1em;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>你的名字的个人网页</h1>
+    <h1>Your Name</h1>
+    <p>知性女生风格主页</p>
 </header>
 
-<section id="life">
+<nav>
+    <a href="#life">生活</a>
+    <a href="#work">工作</a>
+    <a href="#research">研究</a>
+    <a href="#notes">学习笔记</a>
+</nav>
+
+<section id="life" class="editable" contenteditable="false">
     <h2>生活</h2>
-    <p>Das ist Leben。</p>
+    <p>这里是关于你生活的部分的内容。</p>
 </section>
 
-<section id="work">
+<section id="work" class="editable" contenteditable="false">
     <h2>工作</h2>
     <p>这里是关于你工作的部分的内容。</p>
 </section>
 
-<section id="research">
+<section id="research" class="editable" contenteditable="false">
     <h2>研究</h2>
     <p>这里是关于你研究的部分的内容。</p>
 </section>
 
+<section id="notes">
+    <h2>学习笔记</h2>
+    <textarea placeholder="在这里记录你的学习笔记..."></textarea>
+</section>
+
+<section>
+    <h2>上传照片</h2>
+    <form action="#" method="post" enctype="multipart/form-data">
+        <label for="photoUpload">选择照片</label>
+        <input type="file" id="photoUpload" name="photo" accept="image/*" onchange="previewPhoto(event)">
+        <img id="preview" alt="预览照片">
+    </form>
+</section>
+
 <footer>
-    <p>&copy; 2023 你的名字</p>
+    <p>&copy; 2023 Your Name</p>
 </footer>
+
+<script>
+    function previewPhoto(event) {
+        const input = event.target;
+        const preview = document.getElementById('preview');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 
 </body>
 </html>
-
